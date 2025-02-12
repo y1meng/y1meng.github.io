@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi.宝贝!</title>
+    <style>
+        @-webkit-keyframes star-opacity {
+            0% {
+                opacity: 0
+            }
+
+            40% {
+                opacity: 1
+            }
+
+            60% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes star-opacity {
+            0% {
+                opacity: 0
+            }
+
+            40% {
+                opacity: 1
+            }
+
+            60% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        @-webkit-keyframes star-pos {
+            0% {
+                transform: scale(0) rotate(0) translate3d(0, 0, 0);
+                -webkit-transform: scale(0) rotate(0) translate3d(0, 0, 0);
+                -moz-transform: scale(0) rotate(0) translate3d(0, 0, 0)
+            }
+
+            100% {
+                transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
+                -webkit-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
+                -moz-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0)
+            }
+        }
+
+        @keyframes star-pos {
+            0% {
+                transform: scale(0) rotate(0) translate3d(0, 0, 0);
+                -webkit-transform: scale(0) rotate(0) translate3d(0, 0, 0);
+                -moz-transform: scale(0) rotate(0) translate3d(0, 0, 0)
+            }
+
+            100% {
+                transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
+                -webkit-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0);
+                -moz-transform: scale(1) rotate(0) translate3d(-450px, 450px, 0)
+            }
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .index-bg {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%);
+        }
+
+        .index-bg .stars {
+            height: 0
+        }
+
+        .index-bg .star {
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #fff;
+            top: 100px;
+            left: 400px;
+            position: relative;
+            -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+            -webkit-animation: star-opacity 5s infinite ease-in, star-pos 5s infinite ease-in;
+            animation: star-opacity 5s infinite ease-in, star-pos 5s infinite ease-in;
+            -webkit-box-shadow: 0 0 5px 5px rgba(255, 255, 255, .3);
+            box-shadow: 0 0 5px 5px rgba(255, 255, 255, .3);
+            opacity: 0;
+            z-index: 2
+        }
+
+        .index-bg .star:after {
+            content: '';
+            display: block;
+            top: 0;
+            left: 4px;
+            border: 0 solid #fff;
+            border-width: 0 90px 2px;
+            border-color: transparent transparent transparent rgba(255, 255, 255, .3);
+            -webkit-transform: rotate(-45deg) translate3d(1px, 3px, 0);
+            transform: rotate(-45deg) translate3d(1px, 3px, 0);
+            -webkit-box-shadow: 0 0 1px 0 rgba(255, 255, 255, .1);
+            box-shadow: 0 0 1px 0 rgba(255, 255, 255, .1);
+            -webkit-transform-origin: 0% 100%;
+            transform-origin: 0% 100%
+        }
+
+
+        .time-display {
+            position: absolute;
+            top: 97%;
+            left: 60.18%;
+            transform: translate(-50%, -50%);
+            color: #5d2c91;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            text-align: center;
+            animation: fadeIn 3s ease-out forwards;
+            z-index: 3;
+        }
+
+        .time-display p {
+            margin: 0;
+        }
+
+        .time-display span {
+            font-weight: bold;
+            color: #30D2BE;  /* 使用与背景相协调的颜色 */
+            font-size: 15px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /*明信片*/
+        .postcard {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            width: 800px;
+            height: 85%;
+            background: rgba(255, 255, 255, 0.1);  /* 半透明背景 */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* 柔和阴影效果 */
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            z-index: 2;
+            transform: translateY(-50%);
+            backdrop-filter: blur(5px);  /* 背景模糊效果 */
+            overflow-y: auto;
+        }
+
+        /* 自定义滚动条样式 */
+        .postcard::-webkit-scrollbar {
+            width: 8px;  /* 设置滚动条的宽度 */
+            height: 8px; /* 设置水平滚动条的高度 */
+        }
+
+        /* 滚动条轨道样式 */
+        .postcard::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);  /* 轨道背景颜色 */
+            border-radius: 10px;  /* 圆角 */
+        }
+
+        /* 滚动条滑块样式 */
+        .postcard::-webkit-scrollbar-thumb {
+            background: #30D2BE;  /* 滚动条滑块颜色 */
+            border-radius: 10px;  /* 圆角 */
+        }
+
+        /* 滚动条滑块在鼠标悬停时的效果 */
+        .postcard::-webkit-scrollbar-thumb:hover {
+            background: #473B7B;  /* 鼠标悬停时的颜色 */
+        }
+
+        .postcard-content {
+            text-align: left;  /* 文字内容靠左 */
+            font-size: 14px;
+        }
+
+        .postcard-content p {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #e5e5e5;  /* 使用浅色文字 */
+        }
+
+        /* 段落标题样式 */
+        .postcard-content .title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #30D2BE;  /* 使用与背景协调的颜色 */
+            margin-bottom: 5px;
+            
+        }
+
+        /* 段落正文样式 */
+        .postcard-content .body {
+            font-size: 14px;
+            color: #e5e5e5;
+        }
+
+        .para{
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <audio id="bgm" src="bgm.m4a" loop autoplay>
+    </audio>
+    <div class="index-bg">
+        <div class="time-display">
+            <p>sc🩷ruirui：<span id="time"></span></p>
+        </div>
+
+        <div class="postcard">
+            <div class="postcard-content">
+                <p class="title">sc & ruirui</p>
+                <p class="body">2023年9月16日。相约游玩都江堰熊猫谷,初次见面。</p>
+                <p class="body">2023年9月22日。即农历八月初八,在一起</p>
+                <p id="body_day" class="body">已经在一起?天...</p>
+                <div class="para">
+                    <p class="title">一起玩过的地方</p>
+                    <p class="body">熊猫谷</p>
+                    <p class="body">川西竹海</p>
+                    <p class="body">四姑娘山</p>
+                    <p class="body">青城前山</p>
+                    <p class="body">黔灵山公园</p>
+                    <p class="body">黄果树瀑布</p>
+                    <p class="body">自贡灯会</p>
+                    <p class="body">丽江、大理</p>
+                    <p class="body">防城港</p>
+                    <p class="body">银川</p>
+                    <p class="body">...</p>
+                </div>
+
+                <div class="para">
+                    <p class="title">我们自驾了很多公里</p>
+                    <p class="body">川西 922公里</p>
+                    <p class="body">贵州 1728公里</p>
+                    <p class="body">云南&广西 3866公里</p>
+                    <p class="body">...</p>
+                </div>
+
+                <div class="para">
+                    <p class="title">一起看过的电影</p>
+                    <p class="body">敢死队4</p>
+                    <p class="body">第八个嫌疑人</p>
+                    <p class="body">莫斯科行动</p>
+                    <p class="body">三大队</p>
+                    <p class="body">飞驰人生2</p>
+                    <p class="body">功夫熊猫4</p>
+                    <p class="body">你想活出怎样的人生</p>
+                    <p class="body">年会不能停</p>
+                    <p class="body">哪吒之魔童闹海</p>
+                    <p class="body">...</p>
+                </div>
+
+                <div class="para">
+                    <p class="title">一起玩过的游戏</p>
+                    <p class="body">王者荣耀</p>
+                    <p class="body">英雄联盟手游</p>
+                    <p class="body">双人成行</p>
+                    <p class="body">欢乐麻将</p>
+                    <p class="body">csgo</p>
+                    <p class="body">宝可梦大集结</p>
+                    <p class="body">我的世界</p>
+                    <p class="body">三位一体4</p>
+                    <p class="body">黑神话:悟空</p>
+                    <p class="body">...</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star" style="top: 80px; left: 800px; animation-delay: 3s;"></div>
+            <div class="star" style="top: 40px; left: 646px; animation-delay: 2s;"></div>
+            <div class="star" style="top: 55px; left: 406px; animation-delay: 2.5s;"></div>
+            <div class="star" style="top: 10px; left: 526px; animation-delay: 3.5s;"></div>
+            <div class="star" style="top: 110px; left: 396px; animation-delay: 1s;"></div>
+
+            <div class="star" style="top: 120px; left: 395px; animation-delay: 4s;"></div>
+            <div class="star" style="top: 160px; left: 765px; animation-delay: 1s;"></div>
+            <div class="star" style="top: 170px; left: 1200px; animation-delay: 2s;"></div>
+            <div class="star" style="top: 200px; left: 1000px; animation-delay: 1s;"></div>
+        </div>
+    </div>
+</body>
+<script>
+    // 假设你有某个开始日期，设置为某个具体日期
+var startDate = new Date('2023-09-22 22:00:00');  // 例如某个开始日期
+var timeElement = document.getElementById('time');
+var bodyDayElement = document.getElementById('body_day');
+
+function updateTime() {
+    var now = new Date();
+    var diff = now - startDate;
+
+    var seconds = Math.floor(diff / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+
+    seconds %= 60;
+    minutes %= 60;
+    hours %= 24;
+
+    timeElement.innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+    document.title = `与Hi.宝贝!${days}天`;
+    bodyDayElement.innerHTML = `已经在一起${days}天...`
+}
+
+// 每秒更新一次时间
+setInterval(updateTime, 1000);
+updateTime();  // 立即显示当前时间
+
+let audio = document.getElementById('bgm');
+let autoPlayFlag = false;
+document.querySelector("body").onclick = function () {
+    if (!autoPlayFlag) {
+        audio.play();
+        autoPlayFlag = true;
+    }
+}
+
+</script>
+</html>
